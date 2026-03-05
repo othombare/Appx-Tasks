@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Arena</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="font-family:Arial; text-align:center; margin-top:40px;">
+    <h1>Quiz Arena</h1>
+    <div id="lobby">
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <br><br>
+        <button id="startBtn">Start Quiz</button>
+    </div>
+    <div id="quiz" style="display:none;">
+        <h2 id="playerName"></h2>
+        <h3 id="timer">Time: 10</h3>
+        <h2 id="questionText"></h2>
+        <div id="options"></div>
+    </div>
+    <div id="scoreboard" style="display:none;">
+        <h2>Leaderboard</h2>
+        <h3 id="finalScore"></h3>
+    </div>
+    <script src="script.js" defer></script>
+</body>
+</html>

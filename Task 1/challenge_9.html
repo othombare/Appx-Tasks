@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sliding Menu</title>
+    <style>
+
+        body{
+            margin:0;
+            font-family: Arial, sans-serif;
+        }
+
+        .main{
+            padding:40px;
+        }
+
+        button{
+            padding:10px 15px;
+            cursor:pointer;
+            background:green;
+            color:white;
+            border:none;
+            border-radius:5px;
+        }
+
+        /*Side Menu*/ 
+        .sideMenu{
+            position:fixed;
+            top:0;
+            right:0;
+            width:300px;
+            height:100%;
+            background:#f4f4f4;
+            box-shadow:-3px 0 10px rgba(0,0,0,0.2);
+            padding:20px;
+
+            transform: translateX(100%);   /* completely hidden */
+            transition: transform 0.4s ease;
+        }
+
+        .sideMenu.active{
+            transform: translateX(0);  /* slide in */
+        }
+
+        .menuItem{
+            padding:12px;
+            background:#ddd;
+            margin-bottom:10px;
+            cursor:pointer;
+            border-radius:5px;
+        }
+
+        .menuItem:hover{
+            background:#ccc;
+        }
+
+        .closeBtn{
+            text-align:right;
+            font-size:20px;
+            cursor:pointer;
+            color:red;
+            margin-bottom:20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="main">
+    <h1>Main Content</h1>
+    <button onclick="openMenu()">Open Menu</button>
+    <p>Click the button to open the sliding menu</p>
+</div>
+
+<!-- Side Menu -->
+<div class="sideMenu" id="menu">
+    <div class="closeBtn" onclick="closeMenu()">✖</div>
+    <h2>Menu Items</h2>
+
+    <div class="menuItem" onclick="showAlert('Home')">Home</div>
+    <div class="menuItem" onclick="showAlert('About')">About</div>
+    <div class="menuItem" onclick="showAlert('Services')">Services</div>
+    <div class="menuItem" onclick="showAlert('Contact')">Contact</div>
+</div>
+
+<script>
+
+function openMenu(){
+    document.getElementById("menu").classList.add("active");
+}
+
+function closeMenu(){
+    document.getElementById("menu").classList.remove("active");
+}
+
+function showAlert(name){
+    alert("You clicked on " + name);
+}
+
+</script>
+
+</body>
+</html>

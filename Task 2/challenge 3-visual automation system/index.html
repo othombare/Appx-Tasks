@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dynamic Workflow Builder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <div class="sidebar">
+    <h3>Blocks</h3>
+    <button onclick="addBlock('Trigger')">Add Trigger</button>
+    <button onclick="addBlock('Condition')">Add Condition</button>
+    <button onclick="addBlock('Action')">Add Action</button>
+  </div>
+
+  <div id="canvas" class="canvas"></div>
+
+</div>
+
+<svg id="connections"></svg>
+
+<script src="script.js"></script>
+</body>
+</html>

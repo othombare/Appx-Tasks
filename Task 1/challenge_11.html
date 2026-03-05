@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Color Button Creator</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f9;
+            margin: 0;
+            padding-top: 40px; /* Push content down a little */
+            display: flex;
+            justify-content: center; /* Center horizontally only */
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            width: 500px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: gray;
+            margin-bottom: 20px;
+        }
+
+        select, button, input {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        #createBtn {
+            background: #4a7df3;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #customColorWrapper {
+            margin-top: 10px;
+            display: none;
+        }
+
+        #buttonsContainer {
+            margin-top: 20px;
+        }
+
+        .color-btn {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Color Button Creator</h1>
+    <p>This challenge demonstrates JavaScript closures - each button "remembers" its color!</p>
+
+    <select id="colorSelect">
+        <option value="">Choose a color</option>
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+        <option value="purple">Purple</option>
+        <option value="orange">Orange</option>
+        <option value="teal">Teal</option>
+        <option value="custom">Custom color...</option>
+    </select>
+
+    <button id="createBtn">Create Button</button>
+
+    <div id="customColorWrapper">
+        <input type="text" id="customColorInput" placeholder="Enter color code (e.g. #ff5733)">
+    </div>
+
+    <div id="buttonsContainer"></div>
+</div>
+
+<script>
+
+const colorSelect = document.getElementById("colorSelect");
+const createBtn = document.getElementById("createBtn");
+const container = document.getElementById("buttonsContainer");
+const customWrapper = document.getElementById("customColorWrapper");
+const customInput = document.getElementById("customColorInput");
+
+let selectedColor = "";
+
+colorSelect.addEventListener("change", function() {
+    if (this.value === "custom") {
+        customWrapper.style.display = "block";
+        selectedColor = "";
+    } else {
+        customWrapper.style.display = "none";
+        selectedColor = this.value;
+    }
+});
+
+createBtn.addEventListener("click", function() {
+
+    if (colorSelect.value === "custom") {
+        selectedColor = customInput.value.trim();
+    }
+
+    if (!selectedColor) {
+        alert("Please choose or enter a color!");
+        return;
+    }
+
+    function createColorButton(color) {
+        const btn = document.createElement("button");
+        btn.classList.add("color-btn");
+        btn.textContent = color;
+        btn.style.backgroundColor = color;
+
+        btn.addEventListener("click", function() {
+            alert("This button's color is: " + color);
+        });
+
+        return btn;
+    }
+
+    const newButton = createColorButton(selectedColor);
+    container.appendChild(newButton);
+    customInput.value = "";
+});
+
+</script>
+
+</body>
+</html>

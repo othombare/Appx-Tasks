@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Memory Game</title>
+    <style>
+        body{
+            font-family: Arial;
+            text-align:center;
+            background:#f4f6f9;
+        }
+
+        h1{
+            margin-top:30px;
+        }
+
+        .stats{
+            margin:20px;
+        }
+
+        .game{
+            width:420px;
+            margin:20px auto;
+            display:grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap:12px;
+        }
+
+        /* Card Container */
+        .card{
+            width:90px;
+            height:90px;
+            perspective:1000px;
+            cursor:pointer;
+        }
+
+        /* Inner flip structure */
+        .card-inner{
+            width:100%;
+            height:100%;
+            position:relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+        .card.flipped .card-inner{
+            transform: rotateY(180deg);
+        }
+
+        /* Front and Back */
+        .card-front,
+        .card-back{
+            position:absolute;
+            width:100%;
+            height:100%;
+            backface-visibility:hidden;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-size:32px;
+            border-radius:8px;
+        }
+
+        .card-front{
+            background:#2e86de;
+            color:white;
+        }
+
+        .card-back{
+            background:white;
+            border:2px solid #2e86de;
+            transform: rotateY(180deg);
+        }
+
+        button{
+            padding:10px 20px;
+            background:#28a745;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Memory Game</h1>
+
+<div class="stats">
+    <p>Moves: <span id="moves">0</span></p>
+    <p>Time: <span id="time">0</span>s</p>
+</div>
+
+<div class="game" id="game"></div>
+
+<button onclick="restartGame()">Restart Game</button>
+
+<script>
+
+let emojis = ["🐶","🐱","🐭","🐹","🦊","🐻","🐼","🐸"];
+let cardsArray;
+let flippedCards = [];
+let moves = 0;
+let timer;
+let seconds = 0;
+let timerStarted = false;
+
+const game = document.getElementById("game");
+
+function shuffle(array){
+    return array.sort(() => Math.random() - 0.5);
+}
+
+function startGame(){
+    game.innerHTML = "";
+    cardsArray = shuffle([...emojis, ...emojis]);
+    flippedCards = [];
+    moves = 0;
+    seconds = 0;
+    timerStarted = false;
+
+    document.getElementById("moves").innerText = moves;
+    document.getElementById("time").innerText = seconds;
+
+    clearInterval(timer);
+
+    cardsArray.forEach(emoji => {
+
+        let card = document.createElement("div");
+        card.classList.add("card");
+        card.dataset.emoji = emoji;
+
+        card.innerHTML = `
+            <div class="card-inner">
+                <div class="card-front">?</div>
+                <div class="card-back">${emoji}</div>
+            </div>
+        `;
+
+        card.addEventListener("click", flipCard);
+        game.appendChild(card);
+    });
+}
+
+function startTimer(){
+    timer = setInterval(() => {
+        seconds++;
+        document.getElementById("time").innerText = seconds;
+    },1000);
+}
+
+function flipCard(){
+
+    if(this.classList.contains("flipped") || flippedCards.length === 2){
+        return;
+    }
+
+    // Start timer only on first flip
+    if(!timerStarted){
+        startTimer();
+        timerStarted = true;
+    }
+
+    this.classList.add("flipped");
+    flippedCards.push(this);
+
+    if(flippedCards.length === 2){
+        moves++;
+        document.getElementById("moves").innerText = moves;
+        checkMatch();
+    }
+}
+
+function checkMatch(){
+    let [card1, card2] = flippedCards;
+
+    if(card1.dataset.emoji === card2.dataset.emoji){
+        flippedCards = [];
+    } else {
+        setTimeout(() => {
+            card1.classList.remove("flipped");
+            card2.classList.remove("flipped");
+            flippedCards = [];
+        }, 800);
+    }
+}
+
+function restartGame(){
+    clearInterval(timer);
+    startGame();
+}
+
+startGame();
+
+</script>
+
+</body>
+</html>

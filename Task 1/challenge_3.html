@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Form Input Display</title>
+</head>
+<body style="
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+font-family: Arial, sans-serif;
+background-color: #ffffff;
+">
+
+<div style="
+background-color: white;
+padding: 25px;
+border-radius: 10px;
+box-shadow: 0 0 10px rgb(255, 255, 255);
+width: 450px;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+">
+
+
+<h2 style="text-align: center; width: 100%;">
+    Profile Form
+</h2>
+<p>Enter your information below to see it displayed in real-time:</p>
+
+<h3>Name: <span id="nameDisplay"></span></h3>
+<input type="text" id="nameInput" placeholder="Enter your name"
+style="padding: 10px; font-size: 16px; margin-bottom: 15px; width: 100%;"
+oninput="updateDisplay()">
+
+<h3>Job Title: <span id="jobTitleDisplay"></span></h3>
+<input type="text" id="jobTitleInput" placeholder="Enter your job title"
+style="padding: 10px; font-size: 16px; margin-bottom: 15px; width: 100%;"
+oninput="updateDisplay()">
+
+<h3>Age: <span id="ageDisplay"></span></h3>
+<input type="number" id="ageInput" placeholder="Enter your age"
+style="padding: 10px; font-size: 16px; margin-bottom: 15px; width: 100%;"
+oninput="updateDisplay()">
+
+<h3>Bio: <span id="bioDisplay"></span></h3>
+<input type="paragraph" id="bioInput" placeholder="Tell us about yourself"
+style="padding: 10px; font-size: 16px; margin-bottom: 15px; width: 100%;"
+oninput="updateDisplay()">
+
+<div style="
+background-color: rgb(218, 216, 216);
+padding: 25px;
+border-radius: 10px;
+box-shadow: 0 0 10px rgb(255, 255, 255);
+width: 450px;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+">
+
+    <h2 style="margin-top: 0;">Profile Preview:</h2>
+    <p><strong>Name:</strong>Not Provided <span id="namePreview"></span></p>
+    <p><strong>Job Title:</strong>Not Provided <span id="jobTitlePreview"></span></p>
+    <p><strong>Age:</strong>Not Provided <span id="agePreview"></span></p>
+    <p><strong>Bio:</strong>Not Provided <span id="bioPreview"></span></p>
+</div>
+<script>
+    function updateDisplay() {
+        document.getElementById("nameDisplay").textContent = document.getElementById("nameInput").value;
+        document.getElementById("jobTitleDisplay").textContent = document.getElementById("jobTitleInput").value;
+        document.getElementById("ageDisplay").textContent = document.getElementById("ageInput").value;
+        document.getElementById("bioDisplay").textContent = document.getElementById("bioInput").value;      
+        document.getElementById("namePreview").textContent = document.getElementById("nameInput").value;
+        document.getElementById("jobTitlePreview").textContent = document.getElementById("jobTitleInput").value;
+        document.getElementById("agePreview").textContent = document.getElementById("ageInput").value;
+        document.getElementById("bioPreview").textContent = document.getElementById("bioInput").value;
+    }   
+</script>
+
+</body>
+</html>

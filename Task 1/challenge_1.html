@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light Bulb Toggle</title>
+</head>
+
+<body id="body"  style="
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    transition: 0.5s;
+    background-color: #121212;
+    color: white;
+">
+
+    <h1 style="text-align: center; font-family: Arial, sans-serif;">Light Bulb Toggle</h1>
+
+    <h4 style="text-align: center; font-family: Arial, sans-serif;">
+        Click the button to turn the light bulb on or off
+    </h4>
+
+    <div id="bulb" style="
+        width: 80px;
+        height: 80px;
+        background-color: white;
+        border-radius: 50%;
+        margin: 30px 0 0 0;
+        box-shadow: 0 0 10px gray;
+        transition: 0.3s;
+    "></div>
+
+    <div id="bulbstand" style="
+        width: 30px;
+        height: 40px;
+        background-color: #7f8c8d;
+        border-radius: 0 0 5px 5px;
+        margin-bottom: 20px;
+    "></div>
+
+    <button id="btn" onclick="togglelight()" style="
+        text-align: center;
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    ">
+        Turn On
+    </button>
+
+    <h4 id="status" style="text-align: center; font-family: Arial, sans-serif;">
+        Status: off
+    </h4>
+
+    <script>
+        function togglelight() {
+            var bulb = document.getElementById("bulb");
+            var status = document.getElementById("status");
+            var btn = document.getElementById("btn");
+
+            if (bulb.style.backgroundColor === "yellow") {
+                bulb.style.backgroundColor = "white";
+                bulb.style.boxShadow = "0 0 10px gray";
+                status.textContent = "Status: off";
+                btn.textContent = "Turn On";
+                document.getElementById("body").style.backgroundColor = "#121212";
+                document.getElementById("body").style.color = "white";
+            } else {
+                bulb.style.backgroundColor = "yellow";
+                bulb.style.boxShadow = "0 0 40px yellow";
+                status.textContent = "Status: on";
+                btn.textContent = "Turn Off";
+                document.getElementById("body").style.backgroundColor = "white";
+                document.getElementById("body").style.color = "black";
+            }
+        }
+    </script>
+
+</body>
+</html>

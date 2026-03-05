@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Text Color</title>
+</head>
+<body>
+    <h1 id="text" style="text-align: center; font-family: Arial, sans-serif;">Change My Color!</h1>
+    <h4 style="text-align: center; font-family: Arial, sans-serif;">
+        Click the button to change the text color:</h4>
+        <div style="display: flex;  justify-content: center; gap: 10px; margin-top: 20px;">
+        <button id="redbtn" onclick="changecolor()" style="
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;">Red</button>
+            <button id="greenbtn" onclick="changecolor()" style="
+            
+            padding: 10px 20px;
+            background-color: #56e73c;
+            color: white;
+            
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;">Green</button>
+            <button id="bluebtn" onclick="changecolor()" style="
+            
+            padding: 10px 20px;
+            background-color: #3c59e7;
+            color: white;
+            
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;">Blue</button>
+            <button id="purplebtn" onclick="changecolor()" style="
+            
+            padding: 10px 20px;
+            background-color: #d93ce7;
+            color: white;
+            
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;">Purple</button>
+            <button id="resetbtn" onclick="changecolor()" style="
+            padding: 10px 20px;
+            background-color: #3e4646;
+            color: white;
+            
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;">Reset</button>
+        </div>
+        <script>
+            function changecolor(){
+                var text = document.getElementById("text");
+                var redbtn = document.getElementById("redbtn");
+                var greenbtn = document.getElementById("greenbtn");
+                var bluebtn = document.getElementById("bluebtn");
+                var purplebtn = document.getElementById("purplebtn");
+                var resetbtn = document.getElementById("resetbtn");
+
+               redbtn.onclick = function(){
+    text.style.color = "red";
+};
+
+greenbtn.onclick = function(){
+    text.style.color = "green";
+};
+
+bluebtn.onclick = function(){
+    text.style.color = "blue";
+};
+
+purplebtn.onclick = function(){
+    text.style.color = "purple";
+};
+
+resetbtn.onclick = function(){
+    text.style.color = "black";
+};
+                
+            }
+        </script>
+
+
+        
+</body>
+</html>
