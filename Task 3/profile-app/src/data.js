@@ -1,28 +1,24 @@
 const profiles = [
   {
-    id: 1,
-    name: "Onkar",
+    name: "Rahul",
     role: "Frontend Developer",
-    experience: 4,
+    experience: 5,
     skill: "React"
   },
   {
-    id: 2,
-    name: "Amit",
+    name: "Anjali",
     role: "Backend Developer",
     experience: 2,
     skill: "Node"
   },
   {
-    id: 3,
-    name: "Priya",
+    name: "Vikram",
     role: "Full Stack Developer",
-    experience: 5,
+    experience: 4,
     skill: "React"
   },
   {
-    id: 4,
-    name: "Sneha",
+    name: "Priya",
     role: "UI Designer",
     experience: 1,
     skill: "Figma"

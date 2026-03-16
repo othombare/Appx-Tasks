@@ -1,4 +1,4 @@
-import ProfileList from "./Components/ProfileList";
+import ProfileList from "./components/ProfileList";
 
 function App() {
   return (

@@ -4,13 +4,13 @@ import profiles from "../data";
 function ProfileList() {
   return (
     <div>
-      {profiles.map((profile) => (
+      {profiles.map((p, index) => (
         <ProfileCard
-          key={profile.id}
-          name={profile.name}
-          role={profile.role}
-          experience={profile.experience}
-          skill={profile.skill}
+          key={index}
+          name={p.name}
+          role={p.role}
+          experience={p.experience}
+          skill={p.skill}
         />
       ))}
     </div>
