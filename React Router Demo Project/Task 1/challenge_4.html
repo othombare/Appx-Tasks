@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Task List Application</title>
+</head>
+<body style="display:flex; flex-direction:column; align-items:center; font-family:Arial;">
+
+<h1>Task List</h1>
+
+<div style="display:flex; gap:10px;">
+    <input type="text" id="taskinput" placeholder="Add task..." style="padding:8px;">
+    <button onclick="addtask()" style="background-color: blue; color: white;">Add</button>
+</div>
+
+<div style="
+background-color: white;
+padding: 20px;
+margin-top: 20px;
+border-radius: 10px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+width: 300px;
+">
+
+    <ul id="tasklist" style="
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    ">
+    </ul>
+
+</div>
+
+<p>Total Tasks: <span id="taskcount">0</span></p>
+<p>Completed: <span id="completed">0</span></p>
+
+<script>
+let taskcount = 0;
+let completed = 0;
+
+function addtask(){
+
+    const input = document.getElementById("taskinput");
+
+    if(input.value.trim() === "") return;
+
+    const li = document.createElement("li");
+
+    // ✅ checkbox
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+
+    // ✅ task text
+    const span = document.createElement("span");
+    span.textContent = " " + input.value + " ";
+
+    // ✅ delete button
+    const delbtn = document.createElement("button");
+    delbtn.textContent = "Delete";
+
+    // checkbox function
+    checkbox.onchange = function(){
+
+        if(checkbox.checked){
+            span.style.textDecoration = "line-through";
+            completed++;
+        }
+        else{
+            span.style.textDecoration = "none";
+            completed--;
+        }
+
+        document.getElementById("completed").textContent = completed;
+    };
+
+    // delete function
+    delbtn.onclick = function(){
+
+        if(checkbox.checked){
+            completed--;
+            document.getElementById("completed").textContent = completed;
+        }
+
+        li.remove();
+
+        taskcount--;
+        document.getElementById("taskcount").textContent = taskcount;
+    };
+
+    // add elements to li
+    li.appendChild(checkbox);
+    li.appendChild(span);
+    li.appendChild(delbtn);
+
+    // add li to ul
+    document.getElementById("tasklist").appendChild(li);
+
+    taskcount++;
+    document.getElementById("taskcount").textContent = taskcount;
+
+    input.value = "";
+}
+</script>
+</html>
